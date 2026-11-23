@@ -1,0 +1,42 @@
+name: Android CI - Build NetShield X
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Unit tests dan assembleDebug
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Beri izin eksekusi pada Gradle Wrapper
+        run: chmod +x gradlew
+
+      - name: Jalankan unit tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Build APK debug
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Unggah APK debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetShield-X-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

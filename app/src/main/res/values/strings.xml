@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NetShield X</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_network">Jaringan</string>
+    <string name="nav_firewall">Firewall</string>
+    <string name="nav_protection">Proteksi</string>
+    <string name="nav_settings">Pengaturan</string>
+    <string name="vpn_channel_name">Perlindungan NetShield X</string>
+    <string name="vpn_channel_desc">Notifikasi saat VPN lokal aktif</string>
+    <string name="threat_channel_name">Peringatan Ancaman</string>
+    <string name="threat_channel_desc">Notifikasi saat ancaman jaringan terdeteksi</string>
+    <string name="unknown">Tidak diketahui</string>
+</resources>
