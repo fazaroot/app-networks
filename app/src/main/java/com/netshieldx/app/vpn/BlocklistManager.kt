@@ -134,6 +134,9 @@ object BlocklistManager {
             else -> return null
         }.lowercase().trim().trimEnd('.')
         if (candidate.isEmpty() || candidate == "localhost" || candidate == "localhost.localdomain") return null
+        // Tolak alamat IP: baris yang hanya berisi IP (misalnya "0.0.0.0")
+        // bukan aturan domain.
+        if (candidate.matches(Regex("^\\d{1,3}(\\.\\d{1,3}){3}$")) || candidate.contains(':')) return null
         if (!candidate.contains('.')) return null
         if (candidate.any { it.isWhitespace() }) return null
         return candidate
