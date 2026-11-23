@@ -21,6 +21,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -168,7 +169,7 @@ class NetShieldVpnService : VpnService() {
         val rules = repository.firewallRules
         val alertPackages = mutableSetOf<String>()
         try {
-            kotlinx.coroutines.flow.first(rules).forEach { rule ->
+            rules.first().forEach { rule ->
                 if (rule.mode == FirewallMode.ALERT.name) alertPackages.add(rule.packageName)
             }
         } catch (_: Exception) {
